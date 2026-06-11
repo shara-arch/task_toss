@@ -28,7 +28,7 @@ def handle_add_project(args):
 def handle_add_task(args):
     try:
         task = Task.create(args.title, args.project)
-        console.print(f"[bold green] Success:[/bold green] Open task '{task.title}' added to '{task.project}'")
+        console.print(f"[bold green] Success! :[/bold green] Open task '{task.title}' added to '{task.project}'")
     except Exception as e:
         console.print(f"[bold red] Operational Error:[/bold red] {e}")         
 
@@ -36,6 +36,14 @@ def handle_add_task(args):
 def handle_claim_task(args):
     try:
         Task.claim(args.project, args.title, args.user)
-        console.print(f"[bold green] Success:[/bold green] Tasker '{args.user}' claimed task '{args.title}'!")
+        console.print(f"[bold green] Success! :[/bold green] Tasker '{args.user}' claimed task '{args.title}'!")
     except Exception as e:
         console.print(f"[bold red] Operational Error:[/bold red] {e}")
+
+#Command handler for COMPLETING TASKS
+def handle_complete_task(args):
+    try:
+        Task.complete(args.project, args.title, args.user)
+        console.print(f"[bold green] Success!:[/bold green] Task '{args.title}' marked as Completed by {args.user}!")
+    except Exception as e:
+        console.print(f"[bold red] Operational Error:[/bold red] {e}")        
