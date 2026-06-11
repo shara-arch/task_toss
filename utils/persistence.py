@@ -14,3 +14,13 @@ def initialize_storage():
                 json.dump({"users": {}, "projects": {}, "tasks": {}}, f, indent=4)
     except Exception as e:
         print(f"[Storage Error] Initialization failed: {e}")
+
+def load_db() -> dict:
+    """Reads and parses the raw JSON schema."""
+    initialize_storage()
+    try:
+        with open(STORAGE_FILE, "r") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, KeyError):
+        # Graceful error fallback for malformed data
+        return {"users": {}, "projects": {}, "tasks": {}}
