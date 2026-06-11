@@ -120,4 +120,9 @@ def main():
     # Command: render-projects
     subparsers.add_parser("render-projects", help="View the complete projects table.")
     subparsers.set_defaults(func=handle_render_projects)
-    
+
+    args = parser.parse_args()
+    args.func(args)
+
+if __name__ == "__main__":
+    main()
