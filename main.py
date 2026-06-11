@@ -80,4 +80,11 @@ def handle_list_projects(args):
 
 def main():
     parser = argparse.ArgumentParser(description="Task Tosser: A platform that allows you to toss those pesky taks away.")
-    subparsers = parser.add_subparsers(dest="command", required=True)                
+    subparsers = parser.add_subparsers(dest="command", required=True)      
+
+    # Command: add-user
+    u_parser = subparsers.add_parser("add-user", help="Register a profile.")
+    u_parser.add_argument("--name", required=True)
+    u_parser.add_argument("--email", required=True)
+    u_parser.add_argument("--role", choices=["client", "tasker"], required=True, help="Experience role type.")
+    u_parser.set_defaults(func=handle_add_user)          
