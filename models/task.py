@@ -48,3 +48,17 @@ class Task:
 
         db["tasks"][task_key]["assigned_to"] = tasker_name
         save_db(db)
+
+    @classmethod
+    def complete(cls, project: str, title: str, worker_name: str):
+        """Allows the assigned Tasker to flag the task as complete."""
+        db = load_db()
+        task_key = f"{project}:{title}"
+        if task_key not in db["tasks"]:
+            raise KeyError(f"Task '{title}' not found.")
+            
+        if db["tasks"][task_key]["assigned_to"] != worker_name:
+            raise PermissionError("Access Denied: You are not the assigned tasker for this task.")
+            
+        db["tasks"][task_key]["status"] = "Completed"
+        save_db(db)
