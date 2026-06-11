@@ -60,3 +60,13 @@ def handle_list_projects(args):
     table.add_column("Project Owner)")
     table.add_column("Target Deadline", )
     table.add_column("Task Assignment Status", width=50)
+
+    for p_title, p_info in db["projects"].items():
+        linked_tasks = []
+        for t_key, t_info in db["tasks"].items():
+            if t_info["project"] == p_title:
+                #Status Symbol and Assigment Formatting
+                status_symbol = "✔" if t_info["status"] == "Completed" else "⏳"
+                assignee = f" Assigned to: {t_info['assigned_to']}" if t_info['assigned_to'] else "⚠️ [bold yellow]UNCLAIMED[/bold yellow]"
+                linked_tasks.append(f"[{status_symbol}] {t_info['title']} ({assignee})")
+        
