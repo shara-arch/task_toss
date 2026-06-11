@@ -69,4 +69,8 @@ def handle_list_projects(args):
                 status_symbol = "✔" if t_info["status"] == "Completed" else "⏳"
                 assignee = f" Assigned to: {t_info['assigned_to']}" if t_info['assigned_to'] else "⚠️ [bold yellow]UNCLAIMED[/bold yellow]"
                 linked_tasks.append(f"[{status_symbol}] {t_info['title']} ({assignee})")
+        #joins all the formatted tasks for that project with newlines (\n) so they stack neatly inside the table cell. 
+        # If a project has zero tasks, it defaults to a clean [No tasks added yet] placeholder string.
+        tasks_str = "\n".join(linked_tasks) if linked_tasks else "[No tasks added yet]"
+        table.add_row(f"{p_title} (by {p_info['owner']})", p_info["due_date"], tasks_str)                
         
