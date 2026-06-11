@@ -56,7 +56,7 @@ def handle_list_projects(args):
         console.print("[yellow]No tracked project workspaces detected.[/yellow]")
         return
     #Table initialization
-    table = Table(title="TASK TOSS(Toss that task away!)")
+    table = Table(title="TASK TOSSER(Toss that task away!)")
     table.add_column("Project Owner)")
     table.add_column("Target Deadline", )
     table.add_column("Task Assignment Status", width=50)
@@ -76,3 +76,8 @@ def handle_list_projects(args):
         
         #Prints table
         console.print(table)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Task Tosser: A platform that allows you to toss those pesky taks away.")
+    subparsers = parser.add_subparsers(dest="command", required=True)                
