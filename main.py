@@ -102,3 +102,10 @@ def main():
     t_parser.add_argument("--title", required=True)
     t_parser.add_argument("--project", required=True)
     t_parser.set_defaults(func=handle_add_task)
+
+    # Command: claim-task
+    cl_parser = subparsers.add_parser("claim-task", help="Cater to an unclaimed task on the board (Tasker Only).")
+    cl_parser.add_argument("--project", required=True)
+    cl_parser.add_argument("--title", required=True)
+    cl_parser.add_argument("--user", required=True, help="Your registered Tasker username.")
+    cl_parser.set_defaults(func=handle_claim_task)
