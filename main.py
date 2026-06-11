@@ -74,3 +74,5 @@ def handle_list_projects(args):
         tasks_str = "\n".join(linked_tasks) if linked_tasks else "[No tasks added yet]"
         table.add_row(f"{p_title} (by {p_info['owner']})", p_info["due_date"], tasks_str)                
         
+        #Prints table
+        console.print(table)
