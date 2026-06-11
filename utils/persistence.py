@@ -22,7 +22,7 @@ def load_db() -> dict:
         with open(STORAGE_FILE, "r") as f:
             return json.load(f)
     except (json.JSONDecodeError, KeyError):
-        # Graceful error fallback for malformed data
+        # Fallback for malformed data
         return {"users": {}, "projects": {}, "tasks": {}}
     
 def save_db(data: dict):
