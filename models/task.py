@@ -26,3 +26,12 @@ class Task:
             "assigned_to": None,  # Spawns empty, waiting for a Tasker
             "status": "Pending"
         }
+        save_db(db)
+        return cls(title, project)
+    
+    @classmethod
+    def claim(cls, project: str, title: str, tasker_name: str):
+        """Allows a Tasker to attend to the task by claiming it."""
+        db = load_db()
+        if tasker_name not in db["users"]:
+            raise KeyError(f"User '{tasker_name}' does not exist.")
