@@ -86,7 +86,7 @@ def main():
     u_parser = subparsers.add_parser("add-user", help="Register a profile.")
     u_parser.add_argument("--name", required=True)
     u_parser.add_argument("--email", required=True)
-    u_parser.add_argument("--role", choices=["client", "tasker"], required=True, help="Experience role type.")
+    u_parser.add_argument("--role", choices=["client", "tasker"], required=True, help="Experience role type.") #(help) used as a userguide when user types --help
     u_parser.set_defaults(func=handle_add_user)        
 
     # Command: add-project
@@ -96,3 +96,9 @@ def main():
     p_parser.add_argument("--desc", default="Help required.")
     p_parser.add_argument("--due", default="2026-12-31")
     p_parser.set_defaults(func=handle_add_project)  
+
+    # Command: add-task
+    t_parser = subparsers.add_parser("add-task", help="Add specific tasks to your project (Client Only).")
+    t_parser.add_argument("--title", required=True)
+    t_parser.add_argument("--project", required=True)
+    t_parser.set_defaults(func=handle_add_task)
