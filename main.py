@@ -23,3 +23,13 @@ def handle_add_project(args):
         console.print(f"[bold green] Success! :[/bold green] Client '{project.owner}' posted project '{project.title}'")
     except Exception as e:
         console.print(f"[bold red] Operational Error:[/bold red] {e}")
+
+#Command handler for CLAIMING TASKS
+def handle_add_task(args):
+    try:
+        task = Task.create(args.title, args.project)
+        console.print(f"[bold green] Success:[/bold green] Open task '{task.title}' added to '{task.project}'")
+    except Exception as e:
+        console.print(f"[bold red] Operational Error:[/bold red] {e}")         
+
+        
