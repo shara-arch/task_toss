@@ -27,3 +27,5 @@ class Project:
             "due_date": due_date,
             "owner": owner
         }
+        save_db(db)
+        return cls(title, description, due_date, owner)
