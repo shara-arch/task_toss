@@ -109,3 +109,10 @@ def main():
     cl_parser.add_argument("--title", required=True)
     cl_parser.add_argument("--user", required=True, help="Your registered Tasker username.")
     cl_parser.set_defaults(func=handle_claim_task)
+
+    # Command: complete-task
+    cplt_parser = subparsers.add_parser("complete-task", help="Flag a claimed task finished (Assigned Tasker Only).")
+    cplt_parser.add_argument("--project", required=True)
+    cplt_parser.add_argument("--title", required=True)
+    cplt_parser.add_argument("--user", required=True, help="Your registered Tasker username.")
+    cplt_parser.set_defaults(func=handle_complete_task)
