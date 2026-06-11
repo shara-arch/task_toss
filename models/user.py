@@ -22,3 +22,6 @@ class User(Person):
         db["users"][name] = {"email": email, "role": role}
         save_db(db)
         return cls(name, email, role)
+    
+    def __str__(self) -> str:
+        return f"[{self.role.upper()}] {self.name} ({self.email})"
