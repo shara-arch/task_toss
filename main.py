@@ -87,4 +87,12 @@ def main():
     u_parser.add_argument("--name", required=True)
     u_parser.add_argument("--email", required=True)
     u_parser.add_argument("--role", choices=["client", "tasker"], required=True, help="Experience role type.")
-    u_parser.set_defaults(func=handle_add_user)          
+    u_parser.set_defaults(func=handle_add_user)        
+
+    # Command: add-project
+    p_parser = subparsers.add_parser("add-project", help="Post a project needing assistance (Client Only).")
+    p_parser.add_argument("--title", required=True)
+    p_parser.add_argument("--user", required=True, help="Your registered Client username.")
+    p_parser.add_argument("--desc", default="Help required.")
+    p_parser.add_argument("--due", default="2026-12-31")
+    p_parser.set_defaults(func=handle_add_project)  
