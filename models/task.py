@@ -35,3 +35,16 @@ class Task:
         db = load_db()
         if tasker_name not in db["users"]:
             raise KeyError(f"User '{tasker_name}' does not exist.")
+        
+        # Enforce Role-Based Access Control: Only taskers can claim tasks
+        if db["users"][tasker_name]["role"] != "tasker":
+            raise PermissionError(f"Access Denied: '{tasker_name}' is a client and cannot claim tasks.")
+            
+        task_key = f"{project}:{title}"
+        if task_key not in db["tasks"]:
+            raise KeyError(f"Task '{title}' not found in project '{project}'.")
+        if db["tasks"][task_key]["assigned_to"] is not None:
+            raise ValueError(f"Task is already claimed by {db['tasks'][task_key]['assigned_to']}.")
+
+        db["tasks"][task_key]["assigned_to"] = tasker_name
+        save_db(db)
