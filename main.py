@@ -47,3 +47,9 @@ def handle_complete_task(args):
         console.print(f"[bold green] Success!:[/bold green] Task '{args.title}' marked as Completed by {args.user}!")
     except Exception as e:
         console.print(f"[bold red] Operational Error:[/bold red] {e}")        
+#Command handler for FETCHING,FORMATTING AND DISPLAYING PROJECTS
+def handle_list_projects(args):
+    db = load_db()
+    if not db["projects"]:
+        console.print("[yellow]No tracked project workspaces detected.[/yellow]")
+        return
