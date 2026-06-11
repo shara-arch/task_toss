@@ -48,7 +48,7 @@ def handle_complete_task(args):
     except Exception as e:
         console.print(f"[bold red] Operational Error:[/bold red] {e}")        
 #Command handler for FETCHING,FORMATTING AND DISPLAYING PROJECTS
-def handle_list_projects(args):
+def handle_render_projects(args):
     # Loads the entire databaase JSON file into memory
     db = load_db()
     if not db["projects"]:
@@ -116,3 +116,8 @@ def main():
     cplt_parser.add_argument("--title", required=True)
     cplt_parser.add_argument("--user", required=True, help="Your registered Tasker username.")
     cplt_parser.set_defaults(func=handle_complete_task)
+
+    # Command: render-projects
+    subparsers.add_parser("render-projects", help="View the complete projects table.")
+    subparsers.set_defaults(func=handle_render_projects)
+    
