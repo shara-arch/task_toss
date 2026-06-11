@@ -7,3 +7,14 @@ class Task:
         self.project = project
         self.assigned_to = assigned_to
         self._status = status
+
+    @classmethod
+    def create(cls, title: str, project: str) -> "Task":
+        """Allows a Client to add an unassigned task to their project."""
+        db = load_db()
+        if project not in db["projects"]:
+            raise KeyError(f"Project workspace '{project}' does not exist.")
+
+        task_key = f"{project}:{title}"
+        if task_key in db["tasks"]:
+            raise KeyError(f"Task '{title}' already exists inside this project.")
