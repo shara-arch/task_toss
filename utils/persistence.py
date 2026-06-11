@@ -24,3 +24,12 @@ def load_db() -> dict:
     except (json.JSONDecodeError, KeyError):
         # Graceful error fallback for malformed data
         return {"users": {}, "projects": {}, "tasks": {}}
+    
+def save_db(data: dict):
+    """Atomically commits updates back to local storage."""
+    initialize_storage()
+    try:
+        with open(STORAGE_FILE, "w") as f:
+            json.dump(data, f, indent=4)
+    except IOError as e:
+        print(f"[File I/O Error] Could not write records to disk: {e}")    
