@@ -49,7 +49,14 @@ def handle_complete_task(args):
         console.print(f"[bold red] Operational Error:[/bold red] {e}")        
 #Command handler for FETCHING,FORMATTING AND DISPLAYING PROJECTS
 def handle_list_projects(args):
+    # Loads the entire databaase JSON file into memory
     db = load_db()
     if not db["projects"]:
+        #fall back if the dictionary is empty
         console.print("[yellow]No tracked project workspaces detected.[/yellow]")
         return
+    #Table initialization
+    table = Table(title="TASK TOSS(Toss that task away!)")
+    table.add_column("Project Owner)")
+    table.add_column("Target Deadline", )
+    table.add_column("Task Assignment Status", width=50)
