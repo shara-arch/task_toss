@@ -61,3 +61,7 @@ def test_dual_experience_task_lifecycle():
     db = utils.persistence.load_db()
     assert db["tasks"]["FixSink:ReplacePipe"]["assigned_to"] is None
     assert db["tasks"]["FixSink:ReplacePipe"]["status"] == "Pending"
+
+    # 3. Prevent Clients from claiming tasks
+    with pytest.raises(PermissionError):
+        Task.claim("FixSink", "ReplacePipe", "Alice")
