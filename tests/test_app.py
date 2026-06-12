@@ -46,3 +46,18 @@ def test_role_based_project_creation():
     # A Tasker trying to create a project must throw a PermissionError
     with pytest.raises(PermissionError):
         Project.create("PaintHouse", "Paint walls", "2026-09-01", "Bob")
+
+
+def test_dual_experience_task_lifecycle():
+    """Tracks workflows where a Client creates a task and a Tasker caters to it."""
+    # 1. Setup participants and workspace
+    User.create("Alice", "alice@hi.com", "client")
+    User.create("Bob", "bob@work.com", "tasker")
+    Project.create("FixSink", "Repair kitchen pipe leaks", "2026-08-15", "Alice")
+
+    # 2. Client adds an unassigned task
+    task = Task.create("ReplacePipe", "FixSink")
+    
+    db = utils.persistence.load_db()
+    assert db["tasks"]["FixSink:ReplacePipe"]["assigned_to"] is None
+    assert db["tasks"]["FixSink:ReplacePipe"]["status"] == "Pending"
