@@ -19,3 +19,16 @@ def mock_db_file():
         yield
         if os.path.exists(TMP_TEST_FILE):
             os.remove(TMP_TEST_FILE)
+
+def test_user_role_creation_and_constraints():
+    """Verifies user generation logic and role type boundaries."""
+    # Test valid creation paths
+    client_user = User.create("Alice", "alice@hi.com", "client")
+    tasker_user = User.create("Bob", "bob@work.com", "tasker")
+    
+    assert client_user.role == "client"
+    assert tasker_user.role == "tasker"
+    
+    # Assert validation rules block random roles
+    with pytest.raises(ValueError):
+        User.create("Charlie", "charlie@hi.com", "manager")  # Invalid role type            
