@@ -65,3 +65,10 @@ def test_dual_experience_task_lifecycle():
     # 3. Prevent Clients from claiming tasks
     with pytest.raises(PermissionError):
         Task.claim("FixSink", "ReplacePipe", "Alice")
+
+    # 4. Valid Tasker claims the task
+    Task.claim("FixSink", "ReplacePipe", "Bob")
+    db = utils.persistence.load_db()
+    assert db["tasks"]["FixSink:ReplacePipe"]["assigned_to"] == "Bob"
+
+            
