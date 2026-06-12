@@ -1,0 +1,10 @@
+{
+    "users": {
+        "Alice": {
+            "email": "alice@hi.com\n",
+            "role": "client"
+        }
+    },
+    "projects": {},
+    "tasks": {}
+}

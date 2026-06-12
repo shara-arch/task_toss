@@ -118,8 +118,8 @@ def main():
     cplt_parser.set_defaults(func=handle_complete_task)
 
     # Command: render-projects
-    subparsers.add_parser("render-projects", help="View the complete projects table.")
-    subparsers.set_defaults(func=handle_render_projects)
+    render_parser = subparsers.add_parser("render-projects", help="View the complete projects table.")
+    render_parser.set_defaults(func=handle_render_projects)
 
     args = parser.parse_args()
     args.func(args)
