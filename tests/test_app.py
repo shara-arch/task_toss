@@ -75,4 +75,8 @@ def test_dual_experience_task_lifecycle():
     with pytest.raises(PermissionError):
         Task.complete("FixSink", "ReplacePipe", "Alice")
 
+    # 6. Assigned Tasker successfully finishes and closes out the task
+    Task.complete("FixSink", "ReplacePipe", "Bob")
+    db = utils.persistence.load_db()
+    assert db["tasks"]["FixSink:ReplacePipe"]["status"] == "Completed"
             
