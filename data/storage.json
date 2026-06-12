@@ -3,6 +3,10 @@
         "Alice": {
             "email": "alice@hi.com\n",
             "role": "client"
+        },
+        "Bob": {
+            "email": "bob@work.com",
+            "role": "tasker"
         }
     },
     "projects": {},
