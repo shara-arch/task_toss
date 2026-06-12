@@ -1,15 +1,15 @@
 {
     "users": {
-        "Alex": {
-            "email": "alex@example.com",
+        "Alexis": {
+            "email": "alexis@example.com",
             "role": "client"
         },
-        "Sam": {
-            "email": "sam@gmail.com",
+        "Sol": {
+            "email": "sol@gmail.com",
             "role": "tasker"
         },
         "Stacy": {
-            "email": "stacy@example.com",
+            "email": "stacy@gmail.com",
             "role": "tasker"
         }
     },
@@ -17,12 +17,12 @@
         "Website Rebuild": {
             "description": "Help required.",
             "due_date": "2026-09-01",
-            "owner": "Alex"
+            "owner": "Alexis"
         },
         "House renovation": {
             "description": "Help required.",
             "due_date": "2026-08-01",
-            "owner": "Alex"
+            "owner": "Alexis"
         }
     },
     "tasks": {

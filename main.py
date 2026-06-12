@@ -80,39 +80,39 @@ def main():
     parser = argparse.ArgumentParser(description="Task Tosser: A platform that allows you to toss those pesky taks away.")
     subparsers = parser.add_subparsers(dest="command", required=True)      
 
-    # Command: add-user
-    u_parser = subparsers.add_parser("add-user", help="Register a profile.")
-    u_parser.add_argument("--name", required=True)
-    u_parser.add_argument("--email", required=True)
-    u_parser.add_argument("--role", choices=["client", "tasker"], required=True, help="Experience role type.") #(help) used as a userguide when user types --help
+    # Command: add-profile
+    u_parser = subparsers.add_parser("add-new-user", help="Register a profile.")
+    u_parser.add_argument("name::", required=True)
+    u_parser.add_argument("email::", required=True)
+    u_parser.add_argument("role::", choices=["client", "tasker"], required=True, help="Experience role type.") #(help) used as a userguide when user types --help
     u_parser.set_defaults(func=handle_add_user)        
 
     # Command: add-project
-    p_parser = subparsers.add_parser("add-project", help="Post a project needing assistance (Client Only).")
-    p_parser.add_argument("--title", required=True)
-    p_parser.add_argument("--user", required=True, help="Your registered Client username.")
-    p_parser.add_argument("--desc", default="Help required.")
-    p_parser.add_argument("--due", default="2026-12-31")
+    p_parser = subparsers.add_parser("add-new-project", help="Post a project needing assistance (Client Only).")
+    p_parser.add_argument("title::", required=True)
+    p_parser.add_argument("user::", required=True, help="Your registered Client username.")
+    p_parser.add_argument("desc::", default="Help required.")
+    p_parser.add_argument("due::", default="2026-12-31")
     p_parser.set_defaults(func=handle_add_project)  
 
     # Command: add-task
-    t_parser = subparsers.add_parser("add-task", help="Add specific tasks to your project (Client Only).")
-    t_parser.add_argument("--title", required=True)
-    t_parser.add_argument("--project", required=True)
+    t_parser = subparsers.add_parser("add-new-task", help="Add specific tasks to your project (Client Only).")
+    t_parser.add_argument("title::", required=True)
+    t_parser.add_argument("project::", required=True)
     t_parser.set_defaults(func=handle_add_task)
 
     # Command: claim-task
     cl_parser = subparsers.add_parser("claim-task", help="Cater to an unclaimed task on the board (Tasker Only).")
-    cl_parser.add_argument("--project", required=True)
-    cl_parser.add_argument("--title", required=True)
-    cl_parser.add_argument("--user", required=True, help="Your registered Tasker username.")
+    cl_parser.add_argument("project::", required=True)
+    cl_parser.add_argument("title::", required=True)
+    cl_parser.add_argument("user::", required=True, help="Your registered Tasker username.")
     cl_parser.set_defaults(func=handle_claim_task)
 
     # Command: complete-task
     cplt_parser = subparsers.add_parser("complete-task", help="Flag a claimed task finished (Assigned Tasker Only).")
-    cplt_parser.add_argument("--project", required=True)
-    cplt_parser.add_argument("--title", required=True)
-    cplt_parser.add_argument("--user", required=True, help="Your registered Tasker username.")
+    cplt_parser.add_argument("project::", required=True)
+    cplt_parser.add_argument("title::", required=True)
+    cplt_parser.add_argument("user::", required=True, help="Your registered Tasker username.")
     cplt_parser.set_defaults(func=handle_complete_task)
 
     # Command: render-projects
@@ -124,3 +124,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+   

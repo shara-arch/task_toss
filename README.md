@@ -55,11 +55,11 @@ pipenv install
 
 ---
 
-## Quick Start
+## Usage
 
 ```bash
-# 1. Register users
-python3 main.py add-user --name Alexis --email alexis@gmail.com --role client
+** 1. Register users **
+python3 main.py add-user __name Alexis --email alexis@gmail.com --role client
 python3 main.py add-user --name Candy  --email candy@gmail.com  --role tasker
 
 # 2. Create a project
