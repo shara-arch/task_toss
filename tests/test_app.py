@@ -32,3 +32,17 @@ def test_user_role_creation_and_constraints():
     # Assert validation rules block random roles
     with pytest.raises(ValueError):
         User.create("Charlie", "charlie@hi.com", "manager")  # Invalid role type            
+
+
+def test_role_based_project_creation():
+    """Ensures ONLY client accounts are authorized to post project workspaces."""
+    User.create("Alice", "alice@hi.com", "client")
+    User.create("Bob", "bob@work.com", "tasker")
+
+    # A Client creating a project should pass seamlessly
+    project = Project.create("FixSink", "Repair kitchen pipe leaks", "2026-08-15", "Alice")
+    assert project.owner == "Alice"
+
+    # A Tasker trying to create a project must throw a PermissionError
+    with pytest.raises(PermissionError):
+        Project.create("PaintHouse", "Paint walls", "2026-09-01", "Bob")
