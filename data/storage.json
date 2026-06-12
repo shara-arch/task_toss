@@ -1,14 +1,42 @@
 {
     "users": {
-        "Alice": {
-            "email": "alice@hi.com\n",
+        "Alex": {
+            "email": "alex@example.com",
             "role": "client"
         },
-        "Bob": {
-            "email": "bob@work.com",
+        "Sam": {
+            "email": "sam@gmail.com",
+            "role": "tasker"
+        },
+        "Stacy": {
+            "email": "stacy@example.com",
             "role": "tasker"
         }
     },
-    "projects": {},
-    "tasks": {}
+    "projects": {
+        "Website Rebuild": {
+            "description": "Help required.",
+            "due_date": "2026-09-01",
+            "owner": "Alex"
+        },
+        "House renovation": {
+            "description": "Help required.",
+            "due_date": "2026-08-01",
+            "owner": "Alex"
+        }
+    },
+    "tasks": {
+        "Website Rebuild:Write tests": {
+            "title": "Write tests",
+            "project": "Website Rebuild",
+            "assigned_to": "Stacy",
+            "status": "Completed"
+        },
+        "Website Rebuild:Build API": {
+            "title": "Build API",
+            "project": "Website Rebuild",
+            "assigned_to": null,
+            "status": "Pending"
+        }
+    }
 }
