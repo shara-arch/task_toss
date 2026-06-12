@@ -59,23 +59,23 @@ pipenv install
 
 ```bash
 ** 1. Register users **
-python3 main.py add-user __name Alexis --email alexis@gmail.com --role client
-python3 main.py add-user --name Candy  --email candy@gmail.com  --role tasker
+python3 main.py add-new-user -name Alexis -email alexis@gmail.com -role client
+python3 main.py add-new-user -name Candy  -email candy@gmail.com  -role tasker
 
-# 2. Create a project
-python3 main.py add-project --title "Website Rebuild" --user Alex --due 2026-09-01
+** 2. Create a project **
+python3 main.py add-new-project -title "Website Rebuild" -user Alex -due 2026-09-01
 
-# 3. Add tasks to the project
-python3 main.py add-task --title "Write tests" --project "Website Rebuild" 
-python3 main.py add-task --title "Build API"   --project "Website Rebuild" 
+** 3. Add tasks to the project **
+python3 main.py add-task -title "Write tests" -project "Website Rebuild" 
+python3 main.py add-task -title "Build API"   -project "Website Rebuild" 
 
-# 4. Helper claims a task
-python3 main.py claim-task --title "Write tests" --project "Website Rebuild" --user Alexis
+** 4. Helper claims a task **
+python3 main.py claim-task -title "Write tests" -project "Website Rebuild" user: Alexis
 
-# 5. Helper marks it done
-python3 main.py complete-task --title "Write tests" --project "Website Rebuild" --user Candy
+** 5. Helper marks it done **
+python3 main.py complete-task -title "Write tests" -project "Website Rebuild" -user Candy
 
-# 6. View Projects
+** 6. View Projects **
 python3 main.py render-projects
 
 ```
@@ -86,9 +86,9 @@ python3 main.py render-projects
 
 | Command | Description |
 |---|---|
-| `add-user` | Register a new user |
-| `add-project` | Create a project workspace |
-| `add-task` | Add a task to a project |
+| `add-new-user` | Register a new user |
+| `add-new-project` | Create a project workspace |
+| `add-new-task` | Add a task to a project |
 | `claim-task` | Claim a Pending task (Helpers only) |
 | `complete-task` | Mark a task as Completed |
 | `render-projects` | View all projects with task progress |
@@ -97,7 +97,7 @@ python3 main.py render-projects
 Every command supports `--help` for full argument details, e.g.:
 
 ```bash
-python3 main.py add-user --help
+python3 main.py add-new-user --help
 ```
 
 ---
@@ -106,11 +106,11 @@ python3 main.py add-user --help
 
 | | Requester | Helper |
 |---|---|---|
-| Create projects | 
-| Add tasks |
-| Claim tasks |
+| Create projects | ✔ | x |
+| Add tasks | ✔ | x |
+| Claim tasks | x | ✔ |
 | Complete tasks | (any task in their project) |  (only tasks they claimed) |
-| View projects/tasks | 
+| View projects/tasks | ✔ | ✔ |
 
 ---
 
@@ -130,10 +130,5 @@ Data is saved to `data/storage.json`, which is created automatically on first ru
 
 ---
 
-## Design Notes
-
-- `Person → User` inheritance carries shared identity fields (`name`, `email`, `id`)
-- `Task.status` uses a `@property` setter that rejects invalid values at assignment time
-- Each class tracks a `_count` class attribute (total instances created)
-- `User.all()`, `Project.all()`, and `Task.all()` return typed object lists from storage
-- All disk access is isolated to `utils/persistence.py`
+## Author's details
+ ** Author ** Sharon Moegi

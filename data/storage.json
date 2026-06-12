@@ -11,6 +11,10 @@
         "Stacy": {
             "email": "stacy@gmail.com",
             "role": "tasker"
+        },
+        "Shara": {
+            "email": "shara@abc.com",
+            "role": "client"
         }
     },
     "projects": {
