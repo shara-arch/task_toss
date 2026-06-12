@@ -31,7 +31,6 @@ task_toss/
 │   └── storage.json     # Auto-created on first run
 ├── tests/
 |   └──test_app.py          # pytest test suite
-├── requirements.txt
 └── Pipfile
 ```
 
@@ -93,11 +92,17 @@ python3 main.py render-projects
 | `complete-task` | Mark a task as Completed |
 | `render-projects` | View all projects with task progress |
 
-
+---
+## Help Center
 Every command supports `--help` for full argument details, e.g.:
 
 ```bash
 python3 main.py add-new-user --help
+python3 main.py add-new-project --help
+python3 main.py add-new-task --help
+python3 main.py claim-task --help
+
+
 ```
 
 ---
