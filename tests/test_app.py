@@ -71,4 +71,8 @@ def test_dual_experience_task_lifecycle():
     db = utils.persistence.load_db()
     assert db["tasks"]["FixSink:ReplacePipe"]["assigned_to"] == "Bob"
 
+    # 5. Prevent random users or clients from completing the work
+    with pytest.raises(PermissionError):
+        Task.complete("FixSink", "ReplacePipe", "Alice")
+
             
